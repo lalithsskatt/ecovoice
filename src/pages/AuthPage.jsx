@@ -38,20 +38,20 @@ function AuthPage() {
   }
  
   return (
-    <div className="min-h-[calc(100vh-5rem)] bg-slate-950 px-4 py-20 text-slate-100 sm:px-6 lg:px-8">
-      <div className="mx-auto flex max-w-5xl overflow-hidden rounded-[2rem] border border-slate-800 bg-slate-900/95 shadow-2xl shadow-slate-900/50 backdrop-blur-xl">
-        <div className="hidden w-1/2 bg-[radial-gradient(circle_at_top_left,_rgba(16,185,129,0.35),_transparent_35%),_radial-gradient(circle_at_bottom_right,_rgba(16,185,129,0.16),_transparent_28%)] p-12 lg:block">
+    <div className="min-h-[calc(100vh-5rem)] bg-[radial-gradient(circle_at_top_left,_rgba(16,185,129,0.18),_transparent_35%),linear-gradient(180deg,_rgba(236,253,245,0.96),_rgb(15,23,42)_100%)] px-4 py-16 text-slate-950 sm:px-6 lg:px-8">
+      <div className="mx-auto flex max-w-5xl overflow-hidden rounded-[2rem] border border-slate-200 bg-white/90 shadow-2xl shadow-slate-900/10 backdrop-blur-xl md:flex-row">
+        <div className="hidden w-full basis-1/2 bg-[radial-gradient(circle_at_top,_rgba(16,185,129,0.18),transparent_35%),linear-gradient(180deg,rgba(236,253,245,0.95),rgba(14,165,100,0.1))] p-12 text-slate-950 lg:block">
           <div className="space-y-8">
             <div>
-              <p className="text-sm uppercase tracking-[0.35em] text-emerald-400">EcoVoice Global</p>
-              <h2 className="mt-4 text-4xl font-semibold text-white">Citizen Environmental Platform</h2>
+              <p className="text-sm uppercase tracking-[0.35em] text-emerald-600">EcoVoice Global</p>
+              <h2 className="mt-4 text-4xl font-semibold text-slate-950">Citizen Environmental Platform</h2>
             </div>
-            <p className="max-w-xs text-slate-300">
+            <p className="max-w-xs text-slate-700">
               Connect, report, petition, and track climate progress from a single secure citizen dashboard.
             </p>
-            <div className="space-y-4 rounded-3xl border border-slate-700 bg-slate-950/50 p-6">
-              <p className="text-sm uppercase tracking-[0.3em] text-emerald-400">Quick stats</p>
-              <div className="space-y-3 text-sm text-slate-300">
+            <div className="space-y-4 rounded-3xl border border-emerald-100 bg-emerald-50/80 p-6 shadow-sm">
+              <p className="text-sm uppercase tracking-[0.3em] text-emerald-600">Quick stats</p>
+              <div className="space-y-3 text-sm text-slate-700">
                 <p>• 1,212+ active guardians</p>
                 <p>• 8.46k tons CO₂ offset</p>
                 <p>• 142 resolved violations</p>
@@ -60,24 +60,24 @@ function AuthPage() {
           </div>
         </div>
  
-        <div className="w-full bg-slate-950 p-8 sm:p-10 lg:w-1/2">
-          <div className="flex items-center justify-between gap-4 border-b border-slate-800 pb-6">
+        <div className="w-full bg-white p-8 sm:p-10 lg:w-1/2">
+          <div className="flex flex-col sm:items-center sm:justify-between gap-4 border-b border-slate-200 pb-6 sm:flex-row">
             <div className="space-y-1">
-              <p className="text-xs uppercase tracking-[0.35em] text-slate-500">Welcome</p>
-              <h1 className="text-3xl font-semibold text-white">{mode === 'login' ? 'Sign In' : 'Register'}</h1>
+              <p className="text-xs uppercase tracking-[0.35em] text-emerald-500">Welcome</p>
+              <h1 className="text-3xl font-semibold text-slate-950">{mode === 'login' ? 'Sign In' : 'Register'}</h1>
             </div>
-            <div className="flex gap-2 text-sm">
+            <div className="flex flex-wrap gap-2 text-sm">
               <button
                 type="button"
                 onClick={() => setMode('login')}
-                className={`rounded-full px-4 py-2 transition ${mode === 'login' ? 'bg-emerald-500 text-white' : 'bg-slate-800 text-slate-400 hover:bg-slate-700'}`}
+                className={`rounded-full px-4 py-2 transition ${mode === 'login' ? 'bg-emerald-600 text-white shadow-sm' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'}`}
               >
                 Sign In
               </button>
               <button
                 type="button"
                 onClick={() => setMode('register')}
-                className={`rounded-full px-4 py-2 transition ${mode === 'register' ? 'bg-emerald-500 text-white' : 'bg-slate-800 text-slate-400 hover:bg-slate-700'}`}
+                className={`rounded-full px-4 py-2 transition ${mode === 'register' ? 'bg-emerald-600 text-white shadow-sm' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'}`}
               >
                 Register
               </button>
@@ -87,32 +87,32 @@ function AuthPage() {
           <form onSubmit={handleSubmit} className="mt-8 space-y-6">
             {mode === 'register' && (
               <div>
-                <label className="block text-sm font-medium text-slate-300">Username</label>
+                <label className="block text-sm font-medium text-slate-700">Username</label>
                 <input
                   type="text"
                   name="name"
                   value={form.name}
                   onChange={handleChange}
-                  className="mt-3 w-full rounded-3xl border border-slate-800 bg-slate-900 px-4 py-3 text-slate-100 outline-none transition focus:border-emerald-500"
+                  className="mt-3 w-full rounded-3xl border border-emerald-200 bg-slate-50 px-4 py-3 text-slate-950 outline-none transition focus:border-emerald-500 focus:bg-white"
                   placeholder="EcoWarrior"
                 />
               </div>
             )}
  
             <div>
-              <label className="block text-sm font-medium text-slate-300">Email address</label>
+              <label className="block text-sm font-medium text-slate-700">Email address</label>
               <input
                 type="email"
                 name="email"
                 value={form.email}
                 onChange={handleChange}
-                className="mt-3 w-full rounded-3xl border border-slate-800 bg-slate-900 px-4 py-3 text-slate-100 outline-none transition focus:border-emerald-500"
+                className="mt-3 w-full rounded-3xl border border-emerald-200 bg-slate-50 px-4 py-3 text-slate-950 outline-none transition focus:border-emerald-500 focus:bg-white"
                 placeholder="you@example.com"
               />
             </div>
  
             <div>
-              <label className="block text-sm font-medium text-slate-300">Password</label>
+              <label className="block text-sm font-medium text-slate-700">Password</label>
               <input
                 type="password"
                 name="password"
@@ -124,19 +124,19 @@ function AuthPage() {
                 }
               }}
               onBlur={() => setShowPasswordHint(false)}
-                className="mt-3 w-full rounded-3xl border border-slate-800 bg-slate-900 px-4 py-3 text-slate-100 outline-none transition focus:border-emerald-500"
+                className="mt-3 w-full rounded-3xl border border-emerald-200 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-emerald-500 focus:bg-white"
                 placeholder="Enter a strong password"
               />
               {mode === 'register' &&
                   showPasswordHint &&
                   form.password.length === 0 && (
-                    <p className="mt-2 text-xs text-emerald-300">
+                    <p className="mt-2 text-xs text-emerald-700 font-semibold">
                       Use at least 8 chars, one uppercase, one lowercase, one number, and one symbol.
                     </p>
                 )}
-              <div className="mt-3 flex flex-col gap-3 text-sm text-slate-400 sm:flex-row sm:items-center sm:justify-between">
+              <div className="mt-3 flex flex-col gap-3 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between">
                 <p>{mode === 'login' ? 'Access your citizen hub.' : 'Create an account to join the network.'}</p>
-                <Link to="/forgot-password" className="font-semibold text-emerald-400 hover:text-emerald-300">
+                <Link to="/forgot-password" className="font-semibold text-emerald-600 hover:text-emerald-500">
                   Forgot password?
                 </Link>
               </div>
@@ -145,7 +145,7 @@ function AuthPage() {
  
             <button
               type="submit"
-              className="w-full rounded-full bg-gradient-to-r from-emerald-500 to-teal-400 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:brightness-105"
+              className="w-full rounded-full bg-gradient-to-r from-emerald-600 to-teal-500 px-6 py-3 text-sm font-semibold text-white shadow-lg transition hover:brightness-105"
             >
               {mode === 'login' ? 'Sign In to Dashboard' : 'Send Verification Code'}
             </button>

@@ -14,7 +14,7 @@ function DashboardPage() {
   const { user } = useAuth()
   return (
     <div className="space-y-10">
-      <section className="relative overflow-hidden rounded-[2rem] border border-slate-200 bg-slate-950 text-white shadow-2xl shadow-slate-950/20">
+      <section className="relative overflow-hidden rounded-[2rem] border border-slate-200 bg-emerald-600 text-white shadow-2xl shadow-slate-950/20">
         <div className="absolute inset-0 opacity-40" style={{ backgroundImage: `url(${heroImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
         <div className="absolute inset-0 bg-slate-950/75" />
         <div className="relative grid gap-6 p-8 lg:grid-cols-[0.72fr_0.28fr] lg:p-10">
@@ -31,7 +31,7 @@ function DashboardPage() {
                 <p className="text-sm uppercase tracking-[0.35em] text-slate-400">Eco Score</p>
                 <p className="mt-4 text-3xl font-semibold text-emerald-400">50 pts</p>
               </div>
-              <div className="rounded-3xl bg-slate-900/70 pyyy-5">
+              <div className="rounded-3xl bg-slate-900/70 p-5">
                 <p className="text-sm uppercase tracking-[0.35em] text-slate-400">Volunteer Hours</p>
                 <p className="mt-4 text-3xl font-semibold text-slate-300">0 hrs</p>
               </div>

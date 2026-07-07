@@ -7,7 +7,7 @@ const links = [
   { to: '/interactive-map', label: 'Interactive Map' },
   { to: '/carbon-calculator', label: 'Carbon Calculator' },
   { to: '/petitions', label: 'Petitions' },
-  { to: '/', label: 'Eco Complaints' },
+  { to: '/complaints', label: 'Eco Complaints' },
   { to: '/ai-assistant', label: 'AI Assistant' },
 ]
  
@@ -56,3 +56,4 @@ function Sidebar() {
 }
  
 export default Sidebar
+ 

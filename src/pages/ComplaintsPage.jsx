@@ -6,7 +6,7 @@ function ComplaintsPage() {
         <h1 className="mt-3 text-4xl font-semibold text-slate-900 dark:text-white">Eco threat registry</h1>
         <p className="mt-4 max-w-3xl text-lg leading-8 text-slate-600 dark:text-slate-300">Log local environmental hazards, verify threats with AI, and assign cases for cleanup, enforcement, and community response.</p>
       </section>
-
+ 
       <section className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
         <div className="space-y-4">
           <article className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
@@ -23,7 +23,7 @@ function ComplaintsPage() {
               <span className="text-red-500 font-semibold">Critical</span>
             </div>
           </article>
-
+ 
           <article className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
             <div className="flex items-start justify-between gap-4">
               <div>
@@ -39,7 +39,7 @@ function ComplaintsPage() {
             </div>
           </article>
         </div>
-
+ 
         <div className="rounded-3xl border border-slate-200 bg-slate-100 p-8 shadow-sm dark:border-slate-800 dark:bg-slate-950">
           <p className="text-sm uppercase tracking-[0.3em] text-emerald-600">Incident details</p>
           <div className="mt-6 space-y-6">
@@ -58,5 +58,5 @@ function ComplaintsPage() {
     </div>
   )
 }
-
+ 
 export default ComplaintsPage

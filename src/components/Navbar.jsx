@@ -45,7 +45,7 @@ function Navbar({
 
   return (
     <header className="sticky top-0 z-50 border-b border-emerald-200/60 shadow-sm backdrop-blur-xl dark:border-slate-800 dark:bg-slate-950/95">
-      <div className="mx-auto flex max-w-7xl items-center justify-around gap-4 px-2 py-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex max-w-7xl items-center justify-around gap-4 px-2 py-4 lg:px-1">
 
         {/* Logo */}
         <Link

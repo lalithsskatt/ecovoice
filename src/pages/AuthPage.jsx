@@ -2,14 +2,28 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 
+ 
 function AuthPage() {
   const [mode, setMode] = useState('login')
   const [form, setForm] = useState({ name: '', email: '', password: '' })
+  const [error, setError] = useState('')
+  const [showPasswordHint, setShowPasswordHint] = useState(false)
   const { login, signup } = useAuth()
   const navigate = useNavigate()
-
+ 
+  const isStrongPassword = (password) => {
+    return /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/.test(password)
+  }
+ 
   const handleSubmit = async (event) => {
     event.preventDefault()
+    setError('')
+ 
+    if (!isStrongPassword(form.password)) {
+      setError('Password must be at least 8 characters and include one uppercase, one lowercase, one digit, and one special character.')
+      return
+    }
+ 
     if (mode === 'login') {
       await login({ email: form.email, password: form.password })
     } else {
@@ -17,12 +31,12 @@ function AuthPage() {
     }
     navigate('/dashboard')
   }
-
+ 
   const handleChange = (event) => {
     const { name, value } = event.target
     setForm((prev) => ({ ...prev, [name]: value }))
   }
-
+ 
   return (
     <div className="min-h-[calc(100vh-5rem)] bg-slate-950 px-4 py-20 text-slate-100 sm:px-6 lg:px-8">
       <div className="mx-auto flex max-w-5xl overflow-hidden rounded-[2rem] border border-slate-800 bg-slate-900/95 shadow-2xl shadow-slate-900/50 backdrop-blur-xl">
@@ -45,7 +59,7 @@ function AuthPage() {
             </div>
           </div>
         </div>
-
+ 
         <div className="w-full bg-slate-950 p-8 sm:p-10 lg:w-1/2">
           <div className="flex items-center justify-between gap-4 border-b border-slate-800 pb-6">
             <div className="space-y-1">
@@ -69,7 +83,7 @@ function AuthPage() {
               </button>
             </div>
           </div>
-
+ 
           <form onSubmit={handleSubmit} className="mt-8 space-y-6">
             {mode === 'register' && (
               <div>
@@ -84,7 +98,7 @@ function AuthPage() {
                 />
               </div>
             )}
-
+ 
             <div>
               <label className="block text-sm font-medium text-slate-300">Email address</label>
               <input
@@ -96,7 +110,7 @@ function AuthPage() {
                 placeholder="you@example.com"
               />
             </div>
-
+ 
             <div>
               <label className="block text-sm font-medium text-slate-300">Password</label>
               <input
@@ -104,17 +118,31 @@ function AuthPage() {
                 name="password"
                 value={form.password}
                 onChange={handleChange}
+                onFocus={() => {
+                if (form.password.length === 0) {
+                  setShowPasswordHint(true)
+                }
+              }}
+              onBlur={() => setShowPasswordHint(false)}
                 className="mt-3 w-full rounded-3xl border border-slate-800 bg-slate-900 px-4 py-3 text-slate-100 outline-none transition focus:border-emerald-500"
                 placeholder="Enter a strong password"
               />
+              {mode === 'register' &&
+                  showPasswordHint &&
+                  form.password.length === 0 && (
+                    <p className="mt-2 text-xs text-emerald-300">
+                      Use at least 8 chars, one uppercase, one lowercase, one number, and one symbol.
+                    </p>
+                )}
               <div className="mt-3 flex flex-col gap-3 text-sm text-slate-400 sm:flex-row sm:items-center sm:justify-between">
                 <p>{mode === 'login' ? 'Access your citizen hub.' : 'Create an account to join the network.'}</p>
                 <Link to="/forgot-password" className="font-semibold text-emerald-400 hover:text-emerald-300">
                   Forgot password?
                 </Link>
               </div>
+              {error && <p className="mt-3 text-sm text-rose-400">{error}</p>}
             </div>
-
+ 
             <button
               type="submit"
               className="w-full rounded-full bg-gradient-to-r from-emerald-500 to-teal-400 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:brightness-105"
@@ -122,7 +150,7 @@ function AuthPage() {
               {mode === 'login' ? 'Sign In to Dashboard' : 'Send Verification Code'}
             </button>
           </form>
-
+ 
           <p className="mt-6 text-center text-sm text-slate-500">
             By continuing, you agree to the EcoVoice privacy policy and community guidelines.
           </p>
@@ -131,5 +159,6 @@ function AuthPage() {
     </div>
   )
 }
-
+ 
 export default AuthPage
+ 

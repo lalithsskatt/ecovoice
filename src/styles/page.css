@@ -1,0 +1,19 @@
+/* Page padding utilities for non-home pages */
+.page-padding {
+  padding: 2.5rem 1.25rem; /* generous vertical + standard horizontal */
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+ 
+@media (min-width: 1024px) {
+  .page-padding {
+    padding: 3rem 2rem;
+  }
+}
+ 
+@media (max-width: 640px) {
+  .page-padding {
+    padding: 1rem 0.75rem;
+  }
+}

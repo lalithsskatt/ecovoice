@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route, useLocation, Navigate } from 'react-route
 import { useAuth } from './context/AuthContext'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
-import Sidebar from './components/Sidebar'
+// import Sidebar from './components/Sidebar'
 import Breadcrumb from './components/Breadcrumb'
 import Toast from './components/Toast'
 import HomePage from './pages/HomePage'
@@ -12,7 +12,7 @@ import ComplaintsPage from './pages/ComplaintsPage'
 import ClimateMapPage from './pages/ClimateMapPage'
 import GlobalCommunityPage from './pages/GlobalCommunityPage'
 import InteractiveMapPage from './pages/InteractiveMapPage'
-import LearnPage from './pages/LearnPage'
+import LearnPage from './pages/LearnPage' 
 import AboutPage from './pages/AboutPage'
 import ContactPage from './pages/ContactPage'
 import DashboardPage from './pages/DashboardPage'
@@ -22,6 +22,7 @@ import PetitionsPage from './pages/PetitionsPage'
 import CarbonCalculatorPage from './pages/CarbonCalculatorPage'
 import AIAssistantPage from './pages/AIAssistantPage'
 import { AuthProvider } from './context/AuthContext'
+import './styles/page.css'
  
 function AppContent() {
   const location = useLocation()
@@ -30,7 +31,9 @@ function AppContent() {
   const [notification, setNotification] = useState('')
   const [toastVisible, setToastVisible] = useState(false)
   const { user } = useAuth()
- 
+  const authPages = ['/auth', '/login', '/signup', '/forgot-password']
+  const hideLayout = authPages.includes(location.pathname)
+
   useEffect(() => {
     document.documentElement.classList.toggle('dark', theme === 'dark')
   }, [theme])
@@ -51,28 +54,38 @@ function AppContent() {
     setToastVisible(true)
   }
  
-  const workspaceRoutes = ['/dashboard', '/community', '/global-community', '/interactive-map', '/complaints', '/petitions', '/climate-map', '/carbon-calculator', '/ai-assistant', '/learn', '/about']
-  const showSidebar = workspaceRoutes.includes(location.pathname)
-  const showBreadcrumb = location.pathname !== '/' && location.pathname !== '/auth' && location.pathname !== '/forgot-password'
- 
+//  const workspaceRoutes = ['/dashboard', '/community', '/global-community', '/interactive-map', '/complaints', '/petitions', '/climate-map', '/carbon-calculator', '/ai-assistant', '/learn', '/about']
+  
+  // const showSidebar = workspaceRoutes.includes(location.pathname)
+
+  const showBreadcrumb =
+      !hideLayout && location.pathname !== '/' 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-700 transition-colors dark:bg-slate-950 dark:text-slate-200">
-      <Navbar theme={theme} toggleTheme={toggleTheme} mobileMenu={mobileMenu} setMobileMenu={setMobileMenu} onNotify={handleNotify} />
-      <main className="py-8">
+    {!hideLayout && (
+      <Navbar
+        theme={theme}
+        toggleTheme={toggleTheme}
+        mobileMenu={mobileMenu}
+        setMobileMenu={setMobileMenu}
+        onNotify={handleNotify}
+      />
+    )}      
+  <main className={hideLayout ? "p-0" : "py-8"}>
   {showBreadcrumb && (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <Breadcrumb />
     </div>
   )}
  
-  <div className="flex flex-col gap-6 lg:flex-row">
+  {/* <div className="flex flex-col gap-6 lg:flex-row">
     {showSidebar && (
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 lg:max-w-fit">
         <Sidebar />
       </div>
-    )}
+    )} */}
  
-    <div className="flex-1">
+    <div className={hideLayout ? "flex-1" : "flex-1 page-padding"}>
       <Routes>
  
         <Route
@@ -183,9 +196,9 @@ function AppContent() {
  
       </Routes>
     </div>
-  </div>
+  {/* </div> */}
 </main>
-      <Footer />
+      {!hideLayout && <Footer />}
       <Toast message={notification} type="info" visible={toastVisible} />
     </div>
   )

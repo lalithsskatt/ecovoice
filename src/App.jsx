@@ -15,6 +15,7 @@ import InteractiveMapPage from './pages/InteractiveMapPage'
 import LearnPage from './pages/LearnPage' 
 import AboutPage from './pages/AboutPage'
 import ContactPage from './pages/ContactPage'
+import ProfilePage from './pages/ProfilePage'
 import DashboardPage from './pages/DashboardPage'
 import AuthPage from './pages/AuthPage'
 import ForgotPasswordPage from './pages/ForgotPasswordPage'
@@ -138,6 +139,15 @@ function AppContent() {
           element={
             user
               ? <DashboardPage />
+              : <Navigate to="/auth" replace />
+          }
+        />
+ 
+        <Route
+          path="/profile"
+          element={
+            user
+              ? <ProfilePage />
               : <Navigate to="/auth" replace />
           }
         />

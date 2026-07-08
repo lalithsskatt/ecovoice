@@ -29,7 +29,7 @@ function Footer() {
         <div>
           <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-400">Follow Us</h3>
           <div className="follow-us">
-  <h3>FOLLOW US</h3>
+  {/* <h3>FOLLOW US</h3> */}
  
   <div className="social-icons flex gap-4 mt-2">
     <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">

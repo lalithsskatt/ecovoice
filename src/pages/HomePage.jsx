@@ -11,7 +11,15 @@ import CTASection from '../components/shared/CTASection'
 import environmentImage from '../assets/environment.jpg'
 import leafImage from '../assets/leaf.png'
 import leaf2Image from '../assets/leaf2.png'
-import heroImage from '../assets/hero.jpg'
+import climateResilienceImage from '../assets/climateResilience.png'
+import ProgessImage from '../assets/Progress.png'
+import GreenRoofImage from '../assets/GreenRoof.png'
+import VolunterImage from '../assets/Volunter.png'
+import SolarImage from '../assets/Solar.png'
+import CleanupImage from '../assets/Cleanup.png'
+import WalkingpathImage from '../assets/Walkingpath.png'
+import Solar1Image from '../assets/Solar1.png'
+import GlobalStatisticsImage from '../assets/GlobalStatistics.png' 
 
 const visionHighlights = [
   {
@@ -24,13 +32,13 @@ const visionHighlights = [
     title: 'Tools for climate resilience',
     description:
       'Use guides, maps, and volunteer projects to build stronger neighborhoods and ecosystems.',
-    image: heroImage,
+    image: climateResilienceImage,
   },
   {
     title: 'Transparent impact reporting',
     description:
       'Track progress across campaigns, partners, and sustainability outcomes with clarity.',
-    image: leaf2Image,
+    image: ProgessImage,
   },
 ]
 
@@ -59,7 +67,7 @@ const newsItems = [
       'A growing number of municipalities are integrating living roofs into public buildings.',
     date: 'March 18, 2026',
     tag: 'Climate News',
-    image: environmentImage,
+    image: GreenRoofImage,
   },
   {
     title: 'Volunteer-led workshops expand across coastal regions',
@@ -67,7 +75,7 @@ const newsItems = [
       'New community programs shine a light on plastic-free habits.',
     date: 'April 3, 2026',
     tag: 'Community',
-    image: leafImage,
+    image: VolunterImage,
   },
   {
     title: 'Solar training labs help families transition to clean energy',
@@ -75,7 +83,7 @@ const newsItems = [
       'Hands-on workshops are enabling local households to install solar panels.',
     date: 'April 20, 2026',
     tag: 'Renewables',
-    image: heroImage,
+    image: SolarImage,
   },
 ]
 
@@ -86,7 +94,7 @@ const campaigns = [
       'Recruit 300 volunteers to remove trash from endangered shoreline habitats.',
     progress: 72,
     ctaLabel: 'Join cleanup',
-    image: leafImage,
+    image: CleanupImage,
   },
   {
     title: 'Urban Tree Corridor',
@@ -94,7 +102,7 @@ const campaigns = [
       'Establish shaded walking paths with native trees.',
     progress: 54,
     ctaLabel: 'Plant with us',
-    image: environmentImage,
+    image: WalkingpathImage,
   },
   {
     title: 'Solar Skills Lab',
@@ -102,7 +110,7 @@ const campaigns = [
       'Train 150 families on affordable solar installation.',
     progress: 36,
     ctaLabel: 'Learn more',
-    image: heroImage,
+    image: Solar1Image,
   },
 ]
 

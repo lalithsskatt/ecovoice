@@ -3,6 +3,7 @@ import heroImage from '../../assets/hero.jpg'
 import leafImage from '../../assets/leaf.png'
 import goPileafImage from '../../assets/gopileaf.jpeg'
 
+
 const testimonials = [
   {
     quote: 'EcoVoice helped our neighborhood plant trees that cool the street and attract birds again.',

@@ -1,3 +1,4 @@
+import { FaInstagram, FaLinkedin, FaTwitter, FaYoutube } from "react-icons/fa";
 const links = [
   { to: '#about', label: 'About' },
   { to: '#projects', label: 'Projects' },
@@ -27,11 +28,27 @@ function Footer() {
         </div>
         <div>
           <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-400">Follow Us</h3>
-          <div className="mt-4 flex gap-3 text-sm">
-            <a href="https://instagram.com" className="transition hover:text-white">Instagram</a>
-            <a href="https://linkedin.com" className="transition hover:text-white">LinkedIn</a>
-            <a href="https://x.com" className="transition hover:text-white">X</a>
-          </div>
+          <div className="follow-us">
+  <h3>FOLLOW US</h3>
+ 
+  <div className="social-icons flex gap-4 mt-2">
+    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+      <FaInstagram />
+    </a>
+ 
+    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+      <FaLinkedin />
+    </a>
+ 
+    <a href="https://x.com" target="_blank" rel="noopener noreferrer">
+      <FaTwitter />
+    </a>
+ 
+    <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">
+      <FaYoutube />
+    </a>
+  </div>
+</div>
         </div>
       </div>
     </footer>

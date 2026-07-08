@@ -11,7 +11,7 @@ import CTASection from '../components/shared/CTASection'
 import environmentImage from '../assets/environment.jpg'
 import leafImage from '../assets/leaf.png'
 import leaf2Image from '../assets/leaf2.png'
-import heroImage from '../assets/hero.png'
+import heroImage from '../assets/hero.jpg'
 
 const visionHighlights = [
   {

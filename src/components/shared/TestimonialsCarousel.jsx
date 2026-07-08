@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
-import heroImage from '../../assets/hero.png'
+import heroImage from '../../assets/hero.jpg'
 import leafImage from '../../assets/leaf.png'
 import goPileafImage from '../../assets/gopileaf.jpeg'
+
 
 const testimonials = [
   {

@@ -54,14 +54,15 @@ function HeroSlider() {
  
   return (
           <section
-        className="relative -mt-20 overflow-hidden bg-slate-950 text-white shadow-2xl shadow-slate-900/10"
+        className="relative -mt-10 overflow-hidden bg-slate-950 text-white shadow-2xl shadow-slate-900/10"
         style={{ width: '100vw', marginLeft: 'calc(50% - 50vw)' }}
       >
       <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${slide.image})` }} />
       <div className="absolute inset-0" style={{ background: slide.overlay, mixBlendMode: 'screen' }} />
       <div className="absolute inset-0 bg-slate-950/25" />
  
-      <div className="relative mx-auto max-w-7xl px-6 pt-40 pb-20 sm:px-10 lg:px-12">        <div className="max-w-3xl space-y-8 rounded-[2rem] border border-white/10 bg-white/10 p-8 shadow-2xl shadow-slate-950/20">
+      <div className="relative mx-auto max-w-7xl px-6 pt-40 pb-20 sm:px-10 lg:px-12">  
+              <div className="max-w-3xl space-y-8 rounded-[2rem] border border-white/10 bg-white/10 p-8 shadow-2xl shadow-slate-950/20">
           <p className="inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-semibold uppercase tracking-[0.3em] text-white/90 backdrop-blur-sm">
             EcoVoice global launch
           </p>

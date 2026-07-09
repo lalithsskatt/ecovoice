@@ -64,35 +64,45 @@ const goals = [
   { name: 'Inclusive education', description: 'Provide sustainability learning for all ages via workshops and resources.' },
 ]
  
-function AboutPage() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const cardRefs = useRef([]);
+const CARD_WIDTH = 256 // w-64
+const CARD_GAP = 24 // gap-6
+const STEP = CARD_WIDTH + CARD_GAP
  
-  // Auto-Slide effect driven by index state updates
+function AboutPage() {
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [withTransition, setWithTransition] = useState(true)
+  const isPaused = useRef(false)
+  const loopedTeam = [...team, ...team]
+ 
   useEffect(() => {
     const autoSlideInterval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % team.length);
-    }, 3000); // Slides every 3 seconds
+      if (isPaused.current) return
+      setCurrentIndex((prevIndex) => prevIndex + 1)
+    }, 3000)
  
-    return () => clearInterval(autoSlideInterval);
-  }, []);
+    return () => clearInterval(autoSlideInterval)
+  }, [])
  
-  // Whenever the active index changes, smoothly position the container
-  useEffect(() => {
-    const targetCard = cardRefs.current[currentIndex];
-    if (targetCard) {
-      targetCard.scrollIntoView({
-        behavior: 'smooth',
-        block: 'nearest',
-        inline: 'start', // Aligns the leading card index to the left container margin
-      });
+  const handleTransitionEnd = () => {
+    if (currentIndex >= team.length) {
+      setWithTransition(false)
+      setCurrentIndex((prev) => prev - team.length)
     }
-  }, [currentIndex]);
+  }
+ 
+  useEffect(() => {
+    if (!withTransition) {
+      const id = requestAnimationFrame(() => {
+        requestAnimationFrame(() => setWithTransition(true))
+      })
+      return () => cancelAnimationFrame(id)
+    }
+  }, [withTransition])
  
   return (
     <div className="w-full max-w-full overflow-hidden box-border px-4 sm:px-6 lg:px-8 py-12">
       <div className="max-w-7xl mx-auto space-y-16 pb-10">
-       
+ 
         {/* About Section */}
         <section className="rounded-3xl border border-emerald-300 bg-white p-10 shadow-sm dark:border-slate-800 dark:bg-slate-900">
           <p className="text-sm font-semibold uppercase tracking-[0.25em] text-emerald-600">About</p>
@@ -125,52 +135,58 @@ function AboutPage() {
           </div>
         </section>
  
-        {/* Updated Team Section */}
+        {/* Team Section — continuous slider (transform-based, no page scroll side effects) */}
         <section className="rounded-3xl border border-emerald-300 bg-white p-10 shadow-sm dark:border-slate-800 dark:bg-slate-900">
           <p className="text-sm font-semibold uppercase tracking-[0.25em] text-emerald-600">Our team</p>
           <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">A dedicated squad of scientists, coders, and advocates.</p>
-         
-          <div className="relative mt-8 group">
-            {/* Slider Container */}
-            <div
-              className="flex gap-6 overflow-x-auto pb-4 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
-            >
-              {team.map((member, index) => {
-                return (
-                  <div
-                    key={member.name}
-                    ref={(el) => (cardRefs.current[index] = el)}
-                    className="w-64 shrink-0 flex flex-col overflow-hidden rounded-2xl bg-[#4A5551] shadow-md transition-transform duration-300 hover:-translate-y-1"
-                  >
-                    {/* Team Member Image */}
-                    <div className="h-56 w-full bg-slate-200 dark:bg-slate-800">
-                      <img
-                        src={member.image}
-                        alt={member.name}
-                        className="h-full w-full object-cover"
-                        onError={(e) => {
-                          e.target.src = member.fallback;
-                        }}
-                      />
-                    </div>
  
-                    {/* Card Body - Styled dynamically to match second image */}
-                    <div className="flex flex-1 flex-col p-5 text-white bg-[#3D4643]">
-                      <h3 className="text-lg font-bold tracking-tight truncate">
-                        {member.name}
-                      </h3>
-                     
-                      <p className="mt-1 text-[10px] font-bold tracking-wider text-emerald-400 uppercase line-clamp-1">
-                        {member.role}
-                      </p>
-                     
-                      <p className="mt-3 text-xs leading-relaxed text-slate-300 line-clamp-3">
-                        {member.description}
-                      </p>
-                    </div>
+          <div
+            className="relative mt-8 overflow-hidden"
+            onMouseEnter={() => { isPaused.current = true }}
+            onMouseLeave={() => { isPaused.current = false }}
+          >
+            {/* Slider Track */}
+            <div
+              className="flex gap-10"
+              style={{
+                transform: `translateX(-${currentIndex * STEP}px)`,
+                transition: withTransition ? 'transform 300ms ease-in-out' : 'none',
+              }}
+              onTransitionEnd={handleTransitionEnd}
+            >
+              {loopedTeam.map((member, index) => (
+                <div
+                  key={`${member.name}-${index}`}
+                  className="w-64 shrink-0 flex flex-col overflow-hidden rounded-2xl bg-[#4A5551] shadow-md transition-transform duration-300 "
+                >
+                  {/* Team Member Image */}
+                  <div className="h-56 w-full bg-slate-200 dark:bg-slate-800">
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      className="h-full w-full object-cover"
+                      onError={(e) => {
+                        e.target.src = member.fallback
+                      }}
+                    />
                   </div>
-                );
-              })}
+ 
+                  {/* Card Body */}
+                  <div className="flex flex-1 flex-col p-5 text-white bg-[#3D4643]">
+                    <h3 className="text-lg font-bold tracking-tight truncate">
+                      {member.name}
+                    </h3>
+ 
+                    <p className="mt-1 text-[10px] font-bold tracking-wider text-emerald-400 uppercase line-clamp-1">
+                      {member.role}
+                    </p>
+ 
+                    <p className="mt-3 text-xs leading-relaxed text-slate-300 line-clamp-3">
+                      {member.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -208,3 +224,4 @@ function AboutPage() {
 }
  
 export default AboutPage;
+ 

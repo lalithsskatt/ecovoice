@@ -72,7 +72,7 @@ function AppContent() {
         onNotify={handleNotify}
       />
     )}      
-  <main className={hideLayout ? "p-0" : "py-8"}>
+  <main className={hideLayout ? "p-0" : "-mt-16"}>
   {showBreadcrumb && (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <Breadcrumb />
